@@ -22,6 +22,14 @@ app.post('/todos', (req, res) => {
   });
 });
 
+app.get('/todos', (req, res) => {
+  Todo.find().then((todos) => {
+    res.send({ todos });  // ES6 deconstruction (todos: todos)
+  }, (e) => {
+    res.status(400).send(e);
+  });
+});
+
 
 
 app.listen(3000, () => {
@@ -29,5 +37,5 @@ app.listen(3000, () => {
 });
 
 
-
+module.exports = { app };
 
